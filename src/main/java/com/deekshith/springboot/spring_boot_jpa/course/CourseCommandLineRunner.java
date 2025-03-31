@@ -4,23 +4,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.deekshith.springboot.spring_boot_jpa.course.jpa.CourseJpaRepository;
+import com.deekshith.springboot.spring_boot_jpa.dataJpa.CourseDataJpaRepository;
 
 @Component
 public class CourseCommandLineRunner implements CommandLineRunner {
 
+//	@Autowired
+//	private CourseJpaRepository repository;
+
 	@Autowired
-	private CourseJpaRepository repository;
+	private CourseDataJpaRepository repository;
 
 	@Override
 	public void run(String... args) throws Exception {
-		repository.insert(new Course(1, "Learn AWS", "Deekshith"));
-		repository.insert(new Course(2, "Learn Azure", "Deekshith"));
-		repository.insert(new Course(3, "Learn GCP", "Deekshith"));
+		repository.save(new Course(1, "Learn AWS", "Deekshith"));
+		repository.save(new Course(2, "Learn Azure", "Deekshith"));
+		repository.save(new Course(3, "Learn GCP", "Deekshith"));
 
-		repository.deleteById(1);
-		System.out.println(repository.findBy(2));
-		System.out.println(repository.findBy(3));
+		repository.deleteById(1l);
+		System.out.println(repository.findById(2l));
+		System.out.println(repository.findById(3l));
 
 	}
 
